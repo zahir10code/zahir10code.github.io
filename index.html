@@ -123,7 +123,61 @@
     font-weight: bold;
     cursor: pointer;
     z-index: 1000;
+        }        .contacto {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(0,255,136,0.3);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 20px 0;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
         }
+        .contacto h2 {
+            color: #00ff88;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .contacto input, .contacto textarea {
+            width: 100%;
+            background: rgba(0,0,0,0.3);
+            border: 1px solid rgba(0,255,136,0.3);
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 15px;
+            color: white;
+            font-family: inherit;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+        .contacto input::placeholder, .contacto textarea::placeholder {
+            color: #888;
+        }
+        .contacto button {
+            width: 100%;
+            background: #00ff88;
+            color: #0a0a0a;
+            border: none;
+            padding: 14px;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .contacto button:hover {
+            background: #00cc70;
+            transform: translateY(-2px);
+        }
+        .modo-claro .contacto {
+            background: rgba(0,0,0,0.05);
+            border: 1px solid rgba(0,255,136,0.5);
+        }
+        .modo-claro .contacto input, .modo-claro .contacto textarea {
+            background: white;
+            color: #333;
+            border: 1px solid #ddd;
+    }
   </style>
 </head>
 <body>
@@ -187,6 +241,18 @@
       <p style="color:var(--accent); font-size:14px; margin-top:15px; margin-bottom:0;">Tech: JavaScript, localStorage, DOM</p>
   </div>
   </div>
+        <!-- FORMULARIO DE CONTACTO -->
+        <section class="contacto">
+            <h2>📬 Contactame</h2>
+            <form action="https://formspree.io/f/xwvaonnv" method="POST">
+                <input type="text" name="nombre" placeholder="Tu nombre" required>
+                <input type="email" name="email" placeholder="Tu email" required>
+                <textarea name="mensaje" placeholder="Escribime tu mensaje..." rows="4" required></textarea>
+                <button type="submit">Enviar mensaje</button>
+            </form>
+        </section>
+        
+    </div> 
   <script>
     const canvas = document.getElementById('matrix');
     const ctx = canvas.getContext('2d');
