@@ -18,7 +18,22 @@
       --accent: #0969da;
       --card-bg: #f6f8fa;
       --card-border: #d0d7de;
+    }  /* Grid Responsive para proyectos */
+  .grid-proyectos {
+    display: grid;
+    gap: 20px;
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 600px) {
+    .grid-proyectos {
+      grid-template-columns: repeat(2, 1fr);
     }
+  }
+  @media (min-width: 900px) {
+    .grid-proyectos {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
     body {
       margin:0;
       background:var(--bg);
