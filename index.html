@@ -65,6 +65,29 @@
       cursor:pointer;
       z-index:10;
     }
+  /* Portfolio Responsive */
+  .grid-proyectos {
+    display: grid;
+    gap: 20px;
+    grid-template-columns: 1fr;
+  }
+
+  @media (min-width: 600px) {
+    .grid-proyectos {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  @media (min-width: 1000px) {
+    .grid-proyectos {
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+    body {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+  }
   </style>
 </head>
 <body>
@@ -76,7 +99,8 @@
     <p>Frontend Dev desde San Pedro, Buenos Aires 🌊</p>
     <a href="https://wa.me/543445302244" style="background:#25D366; color:white; padding:15px 30px; border-radius:25px; text-decoration:none; font-weight:bold; margin-top:20px; display:inline-block;">📱 Mandame WhatsApp</a>
     <div style="margin-top:80px;">
-      <h2 style="color:var(--accent); border-bottom:2px solid var(--accent); display:inline-block;">Mis Proyectos</h2>
+      <h2 style="color:var(--accent); border-bottom:2px solid var(--accent); display:inline-block;">Mis Proyectos</h2> 
+      <div class="grid-proyectos">
       <div class="card">
         <h3 style="color:var(--text);">🚀 Mi Portfolio Web</h3>
         <p style="color:#8b949e;">Mi primera web hecha 100% desde el celu. HTML + CSS + JavaScript + efecto Matrix.</p>
@@ -125,6 +149,7 @@
       <ul id="listaTareas" style="list-style:none; padding:0; margin:0;"></ul>
       
       <p style="color:var(--accent); font-size:14px; margin-top:15px; margin-bottom:0;">Tech: JavaScript, localStorage, DOM</p>
+  </div>
   </div>
   <script>
     const canvas = document.getElementById('matrix');
