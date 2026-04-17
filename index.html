@@ -82,6 +82,37 @@
         <p style="color:#8b949e;">Mi primera web hecha 100% desde el celu. HTML + CSS + JavaScript + efecto Matrix.</p>
       </div>
     </div>
+    </div>
+  <div class="card">
+      <h3 style="color:var(--text); margin-top:0;">🧮 Calculadora Zahir v1.0</h3>
+      <p style="color:#8b949e; font-size:14px; margin-bottom:15px;">Hecha 100% con JavaScript puro.</p>
+      
+      <input type="text" id="pantalla" readonly style="width:100%; background:var(--bg); color:var(--accent); border:1px solid var(--card-border); border-radius:5px; padding:10px; font-size:20px; text-align:right; margin-bottom:10px; box-sizing:border-box;">
+      
+      <div style="display:grid; grid-template-columns:repeat(4, 1fr); gap:8px;">
+        <button onclick="borrar()" style="grid-column:span 2; background:#ff4d4d; color:white; border:none; padding:15px; border-radius:5px; font-size:16px; cursor:pointer;">C</button>
+        <button onclick="agregar('/')" style="background:var(--accent); color:var(--bg); border:none; padding:15px; border-radius:5px; font-size:16px; cursor:pointer;">/</button>
+        <button onclick="agregar('*')" style="background:var(--accent); color:var(--bg); border:none; padding:15px; border-radius:5px; font-size:16px; cursor:pointer;">x</button>
+        
+        <button onclick="agregar('7')" style="background:var(--card-border); color:var(--text); border:none; padding:15px; border-radius:5px; font-size:16px; cursor:pointer;">7</button>
+        <button onclick="agregar('8')" style="background:var(--card-border); color:var(--text); border:none; padding:15px; border-radius:5px; font-size:16px; cursor:pointer;">8</button>
+        <button onclick="agregar('9')" style="background:var(--card-border); color:var(--text); border:none; padding:15px; border-radius:5px; font-size:16px; cursor:pointer;">9</button>
+        <button onclick="agregar('-')" style="background:var(--accent); color:var(--bg); border:none; padding:15px; border-radius:5px; font-size:16px; cursor:pointer;">-</button>
+        
+        <button onclick="agregar('4')" style="background:var(--card-border); color:var(--text); border:none; padding:15px; border-radius:5px; font-size:16px; cursor:pointer;">4</button>
+        <button onclick="agregar('5')" style="background:var(--card-border); color:var(--text); border:none; padding:15px; border-radius:5px; font-size:16px; cursor:pointer;">5</button>
+        <button onclick="agregar('6')" style="background:var(--card-border); color:var(--text); border:none; padding:15px; border-radius:5px; font-size:16px; cursor:pointer;">6</button>
+        <button onclick="agregar('+')" style="background:var(--accent); color:var(--bg); border:none; padding:15px; border-radius:5px; font-size:16px; cursor:pointer;">+</button>
+        
+        <button onclick="agregar('1')" style="background:var(--card-border); color:var(--text); border:none; padding:15px; border-radius:5px; font-size:16px; cursor:pointer;">1</button>
+        <button onclick="agregar('2')" style="background:var(--card-border); color:var(--text); border:none; padding:15px; border-radius:5px; font-size:16px; cursor:pointer;">2</button>
+        <button onclick="agregar('3')" style="background:var(--card-border); color:var(--text); border:none; padding:15px; border-radius:5px; font-size:16px; cursor:pointer;">3</button>
+        <button onclick="calcular()" style="grid-row:span 2; background:#00ff88; color:#0d1117; border:none; padding:15px; border-radius:5px; font-size:16px; cursor:pointer;">=</button>
+        
+        <button onclick="agregar('0')" style="grid-column:span 2; background:var(--card-border); color:var(--text); border:none; padding:15px; border-radius:5px; font-size:16px; cursor:pointer;">0</button>
+        <button onclick="agregar('.')" style="background:var(--card-border); color:var(--text); border:none; padding:15px; border-radius:5px; font-size:16px; cursor:pointer;">.</button>
+      </div>
+      <p style="color:var(--accent); font-size:14px; margin-top:15px; margin-bottom:0;">Tech: HTML, CSS Grid, JavaScript</p>
   </div>
   <script>
     const canvas = document.getElementById('matrix');
@@ -105,7 +136,21 @@
         drops[i]++;
       }
     }
-    setInterval(dibujar, 35);
+    setInterval(dibujar, 35);  
+// Calculadora
+function agregar(valor) {
+  document.getElementById('pantalla').value += valor;
+}
+function borrar() {
+  document.getElementById('pantalla').value = '';
+}
+function calcular() {
+  try {
+    document.getElementById('pantalla').value = eval(document.getElementById('pantalla').value);
+  } catch {
+    document.getElementById('pantalla').value = 'Error';
+  }
+          }
 
     document.getElementById('botonTema').onclick = function() {
       document.body.classList.toggle('claro');
