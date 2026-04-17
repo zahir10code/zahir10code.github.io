@@ -5,77 +5,63 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Zahir | Portfolio</title>
   <style>
-    body { margin:0; background:#0d1117; color:#58a6ff; font-family:monospace; overflow-x:hidden; }
-    #matrix { position:fixed; top:0; left:0; width:100%; height:100%; z-index:-1; }
-  .content { position:relative; z-index:1; text-align:center; padding:50px 20px; min-height:100vh; display:flex; flex-direction:column; justify-content:center; align-items:center; }
-    h1 { color:#00ff88; border-right:3px solid #00ff88; white-space:nowrap; overflow:hidden; margin:0 auto; width:25ch; animation:typing 3s steps(25), blink.5s step-end infinite alternate; }
-    @keyframes typing { from { width:0 } to { width:25ch } }
-    @keyframes blink { 50% { border-color:transparent } }
+    body {
+      margin: 0;
+      background: #0d1117;
+      color: #58a6ff;
+      font-family: monospace;
+      overflow-x: hidden;
+      transition: background 0.3s, color 0.3s;
+    }
+    #matrix {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    }
+    .content {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 50px 20px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    h1 {
+      color: #00ff88;
+      margin: 0 auto;
+      font-size: 28px;
+    }
+    p {
+      color: #58a6ff;
+    }
   </style>
 </head>
 <body>
   <canvas id="matrix"></canvas>
   <div class="content">
     <button onclick="cambiarTema()" id="botonTema" style="position:absolute; top:20px; right:20px; background:#21262d; color:#00ff88; border:1px solid #00ff88; border-radius:20px; padding:8px 15px; font-weight:bold; cursor:pointer; z-index:10;">🌙 Oscuro</button>
-    <img src="https://ui-avatars.com/api/?name=Zahir&background=00ff88&color=0d1117&size=120" style="width:120px;height:120px;border-radius:50%;border:3px solid #00ff88;margin-bottom:20px;">
+
+    <img src="https://ui-avatars.com/api/?name=ZA&background=00ff88&color=0d1117&size=120" style="width:120px;height:120px;border-radius:50%;border:3px solid #00ff88;margin-bottom:20px;">
     <h1>Hola mundo, soy Zahir</h1>
-     <p>Frontend Dev desde San Pedro, Buenos Aires 🌊</p>
+    <p>Frontend Dev desde San Pedro, Buenos Aires 🌊</p>
     <a href="https://wa.me/543445302244" style="background:#25D366; color:white; padding:15px 30px; border-radius:25px; text-decoration:none; font-weight:bold; margin-top:20px; display:inline-block;">📱 Mandame WhatsApp</a>
-    <div style="margin-top:80px; padding:0 20px;">
+
+    <div style="margin-top:80px; padding: 0 20px;">
       <h2 style="color:#00ff88; border-bottom:2px solid #00ff88; display:inline-block; padding-bottom:5px;">Mis Proyectos</h2>
+
       <div style="background:#161b22; border:1px solid #30363d; border-radius:8px; padding:20px; margin:20px auto; max-width:400px; text-align:left;">
         <h3 style="color:#58a6ff; margin-top:0;">🚀 Mi Portfolio Web</h3>
         <p style="color:#8b949e;">Mi primera web hecha 100% desde el celu. HTML + CSS + JavaScript + efecto Matrix.</p>
         <p style="color:#00ff88; font-size:14px;">Tech: HTML, CSS, JS</p>
         <a href="https://zahir10code.github.io" style="color:#58a6ff; text-decoration:none;">Ver proyecto →</a>
       </div>
+
       <div style="background:#161b22; border:1px solid #30363d; border-radius:8px; padding:20px; margin:20px auto; max-width:400px; text-align:left;">
         <h3 style="color:#58a6ff; margin-top:0;">💡 Próximo Proyecto</h3>
-        <p style="color:#8b949e;">Acá vas a ir agregando lo que vayas codeando. Calculadora, To-Do List, lo que se te ocurra.</p>
-        <p style="color:#00ff88; font-size:14px;">Tech: Por definir</p>
-        <span style="color:#8b949e; font-size:14px;">En construcción...</span>
-      </div>
-    </div>
-    <br><br>
-  </div>
-  <script>
-    const canvas = document.getElementById('matrix');
-    const ctx = canvas.getContext('2d');
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-    const letras = '01ZAHIR';
-    const fontSize = 14;
-    const columnas = canvas.width / fontSize;
-    const drops = [];
-    for(let x = 0; x < columnas; x++) drops[x] = 1;
-    function dibujar() {
-      ctx.fillStyle = 'rgba(13, 17, 23, 0.05)';
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-      ctx.fillStyle = '#00ff88';
-      ctx.font = fontSize + 'px monospace';
-      for(let i = 0; i < drops.length; i++) {
-        const texto = letras[Math.floor(Math.random() * letras.length)];
-        ctx.fillText(texto, i * fontSize, drops[i] * fontSize);
-        if(drops[i] * fontSize > canvas.height && Math.random() > 0.975) drops[i] = 0;
-        drops[i]++;
-      }
-    }
-    setInterval(dibujar, 35);
-    let temaOscuro = true;
-    function cambiarTema() {
-      temaOscuro = !temaOscuro;
-      const body = document.body;
-      const boton = document.getElementById('botonTema');
-      if(temaOscuro){
-        body.style.background = '#0d1117';
-        body.style.color = '#58a6ff';
-        boton.innerHTML = '🌙 Oscuro';
-      } else {
-        body.style.background = '#ffffff';
-        body.style.color = '#24292f';
-        boton.innerHTML = '☀️ Claro';
-      }
-    }
-  </script>
-</body>
-</html>
+        <p style="color:#8b949e;">Acá vas a
