@@ -5,13 +5,27 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Zahir | Portfolio</title>
   <style>
+    :root {
+      --bg: #0d1117;
+      --text: #58a6ff;
+      --accent: #00ff88;
+      --card-bg: #161b22;
+      --card-border: #30363d;
+    }
+    body.claro {
+      --bg: #ffffff;
+      --text: #24292f;
+      --accent: #0969da;
+      --card-bg: #f6f8fa;
+      --card-border: #d0d7de;
+    }
     body {
       margin:0;
-      background:#0d1117;
-      color:#58a6ff;
+      background:var(--bg);
+      color:var(--text);
       font-family:monospace;
       overflow-x:hidden;
-      transition: background 0.3s, color 0.3s;
+      transition: all 0.3s;
     }
     #matrix {
       position:fixed;
@@ -21,64 +35,54 @@
       height:100%;
       z-index:-1;
     }
-  .content {
+    body.claro #matrix { display: none; }
+.content {
       position:relative;
       z-index:1;
       text-align:center;
       padding:50px 20px;
-      min-height:100vh;
-      display:flex;
-      flex-direction:column;
-      justify-content:center;
-      align-items:center;
     }
-    h1 {
-      color:#00ff88;
-      margin:0 auto;
-      font-size: 2em;
-    }
-  .card {
-      background:#161b22;
-      border:1px solid #30363d;
+    h1 { color:var(--accent); margin:0 auto; }
+.card {
+      background:var(--card-bg);
+      border:1px solid var(--card-border);
       border-radius:8px;
       padding:20px;
       margin:20px auto;
       max-width:400px;
       text-align:left;
-      transition: all 0.3s;
+    }
+    #botonTema {
+      position:absolute;
+      top:20px;
+      right:20px;
+      background:var(--card-bg);
+      color:var(--accent);
+      border:1px solid var(--accent);
+      border-radius:20px;
+      padding:8px 15px;
+      font-weight:bold;
+      cursor:pointer;
+      z-index:10;
     }
   </style>
 </head>
 <body>
   <canvas id="matrix"></canvas>
   <div class="content">
-    <button onclick="cambiarTema()" id="botonTema" style="position:absolute; top:20px; right:20px; background:#21262d; color:#00ff88; border:1px solid #00ff88; border-radius:20px; padding:8px 15px; font-weight:bold; cursor:pointer; z-index:10;">🌙 Oscuro</button>
-
-    <img src="https://ui-avatars.com/api/?name=Zahir&background=00ff88&color=0d1117&size=120" style="width:120px;height:120px;border-radius:50%;border:3px solid #00ff88;margin-bottom:20px;">
+    <button id="botonTema">🌙 Oscuro</button>
+    <img src="https://ui-avatars.com/api/?name=Zahir&background=00ff88&color=0d1117&size=120" style="width:120px;height:120px;border-radius:50%;border:3px solid var(--accent);margin-bottom:20px;">
     <h1>Hola mundo, soy Zahir</h1>
-    <p id="subtitulo">Frontend Dev desde San Pedro, Buenos Aires 🌊</p>
+    <p>Frontend Dev desde San Pedro, Buenos Aires 🌊</p>
     <a href="https://wa.me/543445302244" style="background:#25D366; color:white; padding:15px 30px; border-radius:25px; text-decoration:none; font-weight:bold; margin-top:20px; display:inline-block;">📱 Mandame WhatsApp</a>
-
-    <div style="margin-top:80px; padding:0 20px; width:100%;">
-      <h2 id="tituloProyectos" style="color:#00ff88; border-bottom:2px solid #00ff88; display:inline-block; padding-bottom:5px;">Mis Proyectos</h2>
-
+    <div style="margin-top:80px;">
+      <h2 style="color:var(--accent); border-bottom:2px solid var(--accent); display:inline-block;">Mis Proyectos</h2>
       <div class="card">
-        <h3 style="color:#58a6ff; margin-top:0;">🚀 Mi Portfolio Web</h3>
+        <h3 style="color:var(--text);">🚀 Mi Portfolio Web</h3>
         <p style="color:#8b949e;">Mi primera web hecha 100% desde el celu. HTML + CSS + JavaScript + efecto Matrix.</p>
-        <p style="color:#00ff88; font-size:14px;">Tech: HTML, CSS, JS</p>
-        <a href="https://zahir10code.github.io" style="color:#58a6ff; text-decoration:none;">Ver proyecto →</a>
-      </div>
-
-      <div class="card">
-        <h3 style="color:#58a6ff; margin-top:0;">💡 Próximo Proyecto</h3>
-        <p style="color:#8b949e;">Acá vas a ir agregando lo que vayas codeando. Calculadora, To-Do List, lo que se te ocurra.</p>
-        <p style="color:#00ff88; font-size:14px;">Tech: Por definir</p>
-        <span style="color:#8b949e; font-size:14px;">En construcción...</span>
       </div>
     </div>
-    <br><br>
   </div>
-
   <script>
     const canvas = document.getElementById('matrix');
     const ctx = canvas.getContext('2d');
@@ -89,7 +93,6 @@
     const columnas = canvas.width / fontSize;
     const drops = [];
     for(let x = 0; x < columnas; x++) drops[x] = 1;
-
     function dibujar() {
       ctx.fillStyle = 'rgba(13, 17, 23, 0.05)';
       ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -102,33 +105,12 @@
         drops[i]++;
       }
     }
-    let intervaloMatrix = setInterval(dibujar, 35);
+    setInterval(dibujar, 35);
 
-    let temaOscuro = true;
-    function cambiarTema() {
-      temaOscuro =!temaOscuro;
-      const body = document.body;
-      const boton = document.getElementById('botonTema');
-      const h1 = document.querySelector('h1');
-      const subtitulo = document.getElementById('subtitulo');
-      const tituloProyectos = document.getElementById('tituloProyectos');
-      const cards = document.querySelectorAll('.card');
-
-      if(temaOscuro){
-        body.style.background = '#0d1117';
-        body.style.color = '#58a6ff';
-        h1.style.color = '#00ff88';
-        subtitulo.style.color = '#58a6ff';
-        tituloProyectos.style.color = '#00ff88';
-        tituloProyectos.style.borderColor = '#00ff88';
-        boton.innerHTML = '🌙 Oscuro';
-        boton.style.background = '#21262d';
-        boton.style.color = '#00ff88';
-        boton.style.borderColor = '#00ff88';
-        cards.forEach(card => {
-          card.style.background = '#161b22';
-          card.style.borderColor = '#30363d';
-        });
-        // Reinicia Matrix
-        clearInterval(intervaloMatrix);
-        ctx.clearRect(0, 0, canvas.width, canvas.height
+    document.getElementById('botonTema').onclick = function() {
+      document.body.classList.toggle('claro');
+      this.innerHTML = document.body.classList.contains('claro')? '☀️ Claro' : '🌙 Oscuro';
+    };
+  </script>
+</body>
+</html>
