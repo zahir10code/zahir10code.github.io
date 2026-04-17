@@ -9,6 +9,22 @@
       font-family: Arial; 
       text-align: center; 
       padding-top: 40px;
+      margin: 0;
+      overflow-x: hidden;
+    }
+    /* Partículas Matrix */
+    .matrix {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      opacity: 0.3;
+    }
+    .content {
+      position: relative;
+      z-index: 1;
     }
     h1 { 
       color: #00ff88;
@@ -16,24 +32,53 @@
       white-space: nowrap;
       overflow: hidden;
       margin: 0 auto;
+      width: 22ch;
       animation: typing 3s steps(22), blink .5s step-end infinite alternate;
     }
     @keyframes typing {
       from { width: 0 }
-      to { width: 100% }
+      to { width: 22ch }
     }
     @keyframes blink {
       50% { border-color: transparent }
     }
+    @keyframes fall {
+      0% { transform: translateY(-100vh); opacity: 1; }
+      100% { transform: translateY(100vh); opacity: 0; }
+    }
+    .drop {
+      position: absolute;
+      color: #00ff88;
+      font-size: 14px;
+      font-family: monospace;
+      animation: fall linear infinite;
+    }
   </style>
 </head>
 <body>
-  <img src="https://github.com/zahir10code.png" style="width:120px;height:120px;border-radius:50%;border:3px solid #00ff88;margin-bottom:20px;">
-  <h1>Hola mundo, soy Zahir</h1>
-  <p>Mi primera web desde el celu</p>
-  <br>
-  <a href="https://wa.me/543329538217" style="background:#25D366;color:white;padding:12px 24px;border-radius:8px;text-decoration:none;font-weight:bold;display:inline-block;margin-top:20px;">
-    Hablame por WhatsApp
-  </a>
-</body>
-</html>
+  <!-- Fondo Matrix -->
+  <div class="matrix" id="matrix"></div>
+  
+  <!-- Tu contenido -->
+  <div class="content">
+    <img src="https://github.com/zahir10code.png" style="width:120px;height:120px;border-radius:50%;border:3px solid #00ff88;margin-bottom:20px;">
+    <h1>Hola mundo, soy Zahir</h1>
+    <p>Mi primera web desde el celu</p>
+    <br>
+    <a href="https://wa.me/543329538217" style="background:#25D366;color:white;padding:12px 24px;border-radius:8px;text-decoration:none;font-weight:bold;display:inline-block;margin-top:20px;">
+      Hablame por WhatsApp
+    </a>
+  </div>
+
+  <script>
+    const matrix = document.getElementById('matrix');
+    const chars = '01アイウエオカキクケコ';
+    
+    for(let i = 0; i < 50; i++){
+      const drop = document.createElement('div');
+      drop.className = 'drop';
+      drop.style.left = Math.random() * 100 + '%';
+      drop.style.animationDuration = (Math.random() * 3 + 2) + 's';
+      drop.style.animationDelay = Math.random() * 5 + 's';
+      drop.textContent = chars[Math.floor(Math.random() * chars.length)];
+      matrix.appendChild
